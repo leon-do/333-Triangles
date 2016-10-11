@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> 333 triangles </title>
+
+	<!-- Jquery for animation -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+	<style>
+		body{
+			background-color:#272631;
+		}
+		.triangleUp{
+			float:left;
+			width:0;
+			height:0;
+			border-left: 20px solid transparent;
+			border-right: 20px solid transparent;
+			border-bottom: 40px solid #535657;
+		}
+		.triangleDown {
+			float:left;
+			width: 0;
+			height: 0;
+			border-left: 20px solid transparent;
+			border-right: 20px solid transparent;
+			border-top: 40px solid #535657;
+		}
+		#signature{
+			font-family: monospace;
+			color: #F6F5F7;
+			float:right;
+		}
+	</style>
+</head>
+
+
+
+
+
+<body>
+	<div id="myDiv"></div>
+	<div id="signature"> 333 triangles </div>
+</body>
+
+
+
+
+
+
+
+<script>
+	//makes 333 triangles
+	document.getElementById("myDiv").innerHTML = loop(makeTriangles(),333);
+
+	// hover changes color
+	$(document).mouseover(hoverIt)
+
+
+
+// Insignificant stuff ---------------------------------------------------
+
+	// Makes the triangle div
+	function makeTriangles(){
+		triangleUp = "<div class=triangleUp> </div>";
+		triangleDown = "<div class=triangleDown> </div>"
+		Triangle = triangleUp + triangleDown;
+		return Triangle;
+	}
+
+
+	// loops stuff (in this case, the triangle div)
+	function loop(stuff,times){
+		var finalTxt = ""
+		for (var i = 0; i < times; i++){
+			finalTxt = finalTxt + stuff;
+		}
+		return finalTxt;
+	}
+
+
+
+
+// More Insignificant stuff ---------------------------------------------------
+
+
+
+	// Changes color on hover
+	function hoverIt(){
+		$(".triangleUp, .triangleDown").mouseover(function(){
+			$(this).css("border-bottom-color",getRandomColor())
+			$(this).css("border-top-color",getRandomColor())
+		});
+	};
+
+
+	//gets a color (for funciton hoverIt)
+	function getRandomColor(){
+		var hex = ["#247BA0", "#70C1B3", "#B2DBBF", "#F3FFBD", "#FF1654", "#FDFFFC", "#2EC4B6", "#FF9F1C", "#E71D36", "#E63946", "#F1FAEE", "#A8DADC", "#457B9D", "#1D3557", "#2B2D42", "#8D99AE", "#EDF2F4", "#EF233C", "#D90429", "#6699CC", "#FFF275","#FF8C42","#FF3C38","#A23E48","#1A535C","#4ECDC4","#F7FFF7","#FF6B6B","#FFE66D", "#06AED5", "#086788", "#F0C808", "#FFF1D0", "#DD1C1A"]
+
+		var randomNum = Math.floor(Math.random() * (hex.length));
+
+		return hex[randomNum];
+	}
+
+</script>
+</html>
